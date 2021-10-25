@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock title %}  </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="assets/style.css">
+    <title>MyImage</title>
+<style>
+.backg{
+      background-color:#1a0008;
+}
+
+    .ico{
+    background-color:#d81b60;
+}
+.bor{
+  color:red;
+  border-radius:5px;
+  border: 1px solid red;
+}
+.bord {
+  border: 2px solid yellow;
+  background-color:black
+  color: red;
+  font-size: 16px;
+  
+}
+.tex{
+ color:purple;
+}
+
+
+</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg backg text-white">
+  <a class="navbar-brand text-white" href="/">MyImage</a>
+  <button class="navbar-toggler bord " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon bor"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Latest</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu text-white backg" aria-labelledby="navbarDropdown">
+          {% for j in categ%}
+                <a href="/category/{{j.pk}}" class="list-group-item text-dark list-group-item-action">{{j.title}}</a>
+                 {%endfor%}
+        </div>
+      </li>
+       {% if user.is_authenticated %}
+       <li class="nav-item">
+        <a class="nav-link disable text-yellow" href="/">{{user.first_name}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disable text-white" href="/account/logout">Logout</a>
+      </li>
+
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link disable text-white" href="/account/signup">Signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disable text-white" href="/account/signin">Login</a>
+      </li>
+      {%endif%}
+      <li class="nav-item" >
+        <a class="nav-link disable text-white" type="submit" href="/account/cart">Cart</a>
+      </li>
+      
+    </ul>
+    
+    <form action="search" method='GET' class="form-inline my-2 my-lg-0">
+    {%csrf_token%}
+      <input class="form-control mr-sm-2 text-dark"name="find" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 text-white" name="search" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+{% block body %}
+
+
+
+
+
+{% endblock body %}
+
+<!-- Footer -->
+<div class="card  backg text-white">
+<footer class="page-footer font-small stylish-color-dark pt-4">
+  <!-- Footer Links -->
+  <!-- Call to action -->
+  <ul class="list-unstyled list-inline text-center py-2">
+    <li class="list-inline-item">
+      <h5 class="mb-1">Register for free</h5>
+    </li>
+    <li class="list-inline-item">
+      <a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>
+    </li>
+  </ul>
+  <!-- Call to action -->
+ <hr>
+  <!-- Social buttons -->
+  <ul class="list-unstyled list-inline text-center">
+    <li class="list-inline-item">
+      <a  href="#"class="btn-floating btn-fb mx-1 text-white">
+        <i class="fab fa-facebook-f"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a  href="#" class="btn-floating btn-tw mx-1 text-primary">
+        <i class="fab fa-twitter"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a  href="#" class="btn-floating btn-gplus mx-1 text-danger">
+        <i class="fab fa-google-plus-g"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a  href="#" class="btn-floating btn-li mx-1 text-blue">
+        <i class="fab fa-linkedin-in"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a  href="#" class="btn-floating btn-dribbble mx-1 text-danger">
+        <i class="fab fa-dribbble"> </i>
+      </a>
+    </li>
+  </ul>
+  <!-- Social buttons -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/"> MyImage.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+</div>
+<!-- Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+   <!--script for image hover resize-->
+    <script>
+    function showModalwithImage(imageUrl)
+    {
+      $('#image-modal').modal(show)
+      $("#image-show").attr('src',`/media/{imageUrl`)
+    }
+    
+    </script>
+  </body>
+</html>

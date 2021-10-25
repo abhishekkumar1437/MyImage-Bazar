@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<div>
+<!--categories-->
+<div class="row pt-5 pl-5">
+  <div class="col-md-2">
+       <div class=" bak">
+                <a href="#" class="list-group-item list-group-item-action ico">All Images</a>
+                 {% for j in categ%}
+                <a href="#" class="list-group-item text-dark list-group-item-action">{{j.title}}</a>
+                 {%endfor%}
+        </div>
+    
+  </div>
+<!-- images -->
+  <div class-"col-md-10">
+    <div class="row mt-3">
+     <div class="col-md-12">
+       <div class="card-columns">
+       {% for i in images %}
+
+         <div class="card" >
+            <img class="card-img-top" src="/media/{{i.image}}" alt="{{i.title}}">
+            <div class="card-body">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text">{{i.description}}</p>
+            <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
+       {%endfor%}
+       </div>
+     </div>
+    </div>
+  </div>
+ </div>
+
+{% endblock body %}
